@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ثبت هزینه</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap4.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!-- bootstrap rtl -->
+  <link rel="stylesheet" href="../../dist/css/bootstrap-rtl.min.css">
+  <!-- template rtl version -->
+  <link rel="stylesheet" href="../../dist/css/custom-style.css">
+  <!-- modal css -->
+  <link rel="stylesheet" href="../../dist/css/Modal.css">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker-bs3.css">
+  <!-- Persian Data Picker -->
+  <link rel="stylesheet" href="../../dist/css/persian-datepicker.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="../../index.html" class="nav-link">خانه</a>
+      </li>
+      
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
+                class="fa fa-th-large"></i></a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="../../index3.html" class="brand-link">
+      <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">ثبت درآمد و هزینه</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div>
+        
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+                 with font-awesome or any other icon font library -->
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-dashboard"></i>
+                <p>
+                  داشبوردها
+                  <i class="right fa fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../Menu/Income.html" class="nav-link">
+                    <i class="fa fa-circle-o nav-icon"></i>
+                    <p>درآمد</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/Menu/Cost.html" class="nav-link">
+                    <i class="fa fa-circle-o nav-icon"></i>
+                    <p>هزینه</p>
+                  </a>
+                </li>
+                
+            </li>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-12">
+          
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">جدول درآمد</h3>
+            </div>
+            <!-- /start modal -->
+            <button id="myBtn" type="button" class="btn btn-outline-success">ثبت درآمد</button>
+             <!-- The Modal -->
+             <div class="my_modal">
+              <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <form id="form_data"></form>
+                  <div class="modal-content">
+
+                    
+                  <span class="close">&times;</span>
+                  <p>فرم ثبت درآمد ها</p>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">مبلغ درآمد</label>
+                      <input type="text" class="form-control" id="input_cost" placeholder="لطفا مبلغ را به ریال وارد کنید">
+                      
+                        <!-- Date range -->
+                        <div class="form-group">
+                          <label>انتخاب تاریخ:</label>
+
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                <i class="fa fa-calendar"></i>
+                              </span>
+                            </div>
+                            <input class="normal-example form-control" id="input_date" />
+                          </div>
+                          <!-- /.input group -->
+                        </div>
+                      
+                      <label for="exampleInputEmail1">توضیحات</label>
+                      <input type="text" class="form-control" id="input_des" placeholder="لطفا توضیحات را وارد کنید">
+                      <div class="form-group">
+                        <label>انتخاب حساب</label>
+                        <select class="form-control select2"  style="width: 100%;" id="select_bank" >
+                          <option>رسالت</option>
+                          <option>سامان</option>
+                          <option>ملی</option>
+                        </select>
+                      </div>
+                      <button id="data_sub" type="button" class="btn btn-outline-success">ثبت </button>
+                    </div>
+                  </div>
+                </form>
+             </div>
+             <!-- /End modal -->
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>مبلغ</th>
+                  <th>تاریخ و زمان</th>
+                  <th>توضیحات</th>
+                  <th>حساب</th>
+                </tr>
+                </thead>
+                
+                <tr class="List_tr">
+                  
+                  <!-- <td class="Count_list">a</td>
+                  <td class="Date_list">d</td>
+                  <td class="Discription_list">f</td>
+                  <td class="Bank_list">g</td>
+                  <td></td> -->
+                </tr>
+                
+                
+                <tfoot>
+                <tr>
+                  <th>مجموع درآمد:&nbsp;
+                    <span id="sum"></span>
+                  </th>
+                  
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+ 
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<script src="../../dist/js/modal.js"></script>
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="../../plugins/datatables/jquery.dataTables.js"></script>
+<script src="../../plugins/datatables/dataTables.bootstrap4.js"></script>
+<!-- SlimScroll -->
+<script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../../plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- date-range-picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+<script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Persian Data Picker -->
+<script src="../../dist/js/persian-date.min.js"></script>
+<script src="../../dist/js/persian-datepicker.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<!-- js Script -->
+<script src="../../dist/js/Script-Income.js"></script>
+<!-- jQuery -->
+<!-- page script -->
+ <script>
+  $(function () {
+    $("#example1").DataTable({
+        "language": {
+            "paginate": {
+                "next": "بعدی",
+                "previous" : "قبلی"
+            }
+        },
+        "info" : false,
+    });
+  });
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass   : 'iradio_minimal-blue'
+    })
+    //Red color scheme for iCheck
+    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+      checkboxClass: 'icheckbox_minimal-red',
+      radioClass   : 'iradio_minimal-red'
+    })
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass   : 'iradio_flat-green'
+    })
+
+    //Colorpicker
+    $('.my-colorpicker1').colorpicker()
+    //color picker with addon
+    $('.my-colorpicker2').colorpicker()
+
+
+    $('.normal-example').persianDatepicker();
+
+
+
+
+  })
+</script>
+</body>
+</html>
